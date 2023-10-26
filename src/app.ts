@@ -10,7 +10,11 @@ export const layout = () => {
   return {
     logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
     menu: {
-      locale: false,
+      locale: true,
     },
+    // 默认布局调整
+    // rightContentRender: () => <RightContent />,
+    // footerRender: () => <Footer />,
+    menuHeaderRender: undefined,
   };
 };

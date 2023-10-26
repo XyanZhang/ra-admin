@@ -1,4 +1,5 @@
 import { defineConfig } from '@umijs/max';
+import routes from './config/route';
 
 export default defineConfig({
   antd: {},
@@ -7,29 +8,9 @@ export default defineConfig({
   initialState: {},
   request: {},
   layout: {
-    title: '@umijs/max',
+    title: 'ra-admin', // 显示在布局左上角的产品名，默认值为包名
+    locale: true, // 默认开启，如无需菜单国际化可关闭
   },
-  routes: [
-    {
-      path: '/',
-      redirect: '/home',
-    },
-    {
-      name: '首页',
-      path: '/home',
-      component: './Home',
-    },
-    {
-      name: '权限演示',
-      path: '/access',
-      component: './Access',
-    },
-    {
-      name: ' CRUD 示例',
-      path: '/table',
-      component: './Table',
-    },
-  ],
+  routes,
   npmClient: 'pnpm',
 });
-
