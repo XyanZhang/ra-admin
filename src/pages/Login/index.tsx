@@ -1,31 +1,40 @@
+import useIsLogin from '@/hooks/useIsLogin';
+import { isLogin } from '@/utils';
 import { LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons';
 import {
   LoginForm,
   PageContainer,
   ProFormCaptcha,
   ProFormText,
-  setAlpha,
 } from '@ant-design/pro-components';
+import { history } from '@umijs/max';
 import { Tabs, message, theme } from 'antd';
-import type { CSSProperties } from 'react';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import styles from './index.less';
 
 type LoginType = 'phone' | 'account';
 
+type LoginParams = {
+  username: string;
+  mobile: string;
+  password?: string;
+  captcha?: string;
+};
+
 let Login = () => {
   const { token } = theme.useToken();
   const [loginType, setLoginType] = useState<LoginType>('phone');
-  const iconStyles: CSSProperties = {
-    marginInlineStart: '16px',
-    color: setAlpha(token.colorTextBase, 0.2),
-    fontSize: '24px',
-    verticalAlign: 'middle',
-    cursor: 'pointer',
-  };
-  const submit:any = (e: any) => {
-    console.log('submit');
-  }
+
+  const submit = useCallback(async (e: LoginParams) => {
+    console.log('submit', e);
+    const { mobile, username } = e;
+    localStorage.setItem('loginToken', '1');
+    if (mobile) localStorage.setItem('loginMobile', mobile);
+    if (username) localStorage.setItem('loginUser', username);
+
+    // umi 路由跳转
+    history.push('/');
+  }, []);
 
   return (
     <PageContainer>
@@ -35,7 +44,7 @@ let Login = () => {
           title="ra-admin"
           subTitle="react antd umi 后台管理系统"
           onFinish={submit}
-          // onFocus={onFocus}  
+          // onFocus={onFocus}
         >
           <Tabs
             centered
@@ -125,14 +134,12 @@ let Login = () => {
               />
             </>
           )}
-          <div
-            style={{
-              marginBlockEnd: 24,
-            }}
+          {/* <div
+            style={{ marginBlockEnd: 24, }}
           >
-            {/* <ProFormCheckbox noStyle name="autoLogin">
+            <ProFormCheckbox noStyle name="autoLogin">
               自动登录
-            </ProFormCheckbox> */}
+            </ProFormCheckbox>
             <a
               style={{
                 float: 'right',
@@ -140,8 +147,7 @@ let Login = () => {
             >
               忘记密码
             </a>
-          </div>
-
+          </div> */}
         </LoginForm>
       </div>
     </PageContainer>
@@ -149,6 +155,12 @@ let Login = () => {
 };
 
 export default () => {
+  useIsLogin();
+
+  if (isLogin()) {
+    return <></>;
+  }
+
   return (
     <div className={styles.centerPos}>
       <Login></Login>
