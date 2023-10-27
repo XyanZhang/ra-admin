@@ -1,4 +1,4 @@
-let routes = [
+export let routes = [
   {
     path: '/',
     redirect: '/home',
@@ -7,6 +7,18 @@ let routes = [
     name: '首页',
     path: '/home',
     component: './Home',
+  },
+  {
+    name: '密码登录',
+    path: '/login',
+    component: './Login',
+    layout: false 
+  },
+  {
+    name: '密码登录',
+    path: '/login-nice',
+    component: './Login/nice',
+    layout: false 
   },
   {
     name: '权限演示',
@@ -22,7 +34,5 @@ let routes = [
     name: ' dashboard 示例',
     path: '/dashboard',
     component: './Dashboard',
-  },
+  }
 ];
-
-export default routes;
