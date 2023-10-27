@@ -23,7 +23,7 @@ let Login = () => {
     verticalAlign: 'middle',
     cursor: 'pointer',
   };
-  const submit = (e: any) => {
+  const submit:any = (e: any) => {
     console.log('submit');
   }
 
@@ -34,6 +34,8 @@ let Login = () => {
           logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
           title="ra-admin"
           subTitle="react antd umi 后台管理系统"
+          onFinish={submit}
+          // onFocus={onFocus}  
         >
           <Tabs
             centered
