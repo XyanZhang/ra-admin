@@ -1,27 +1,21 @@
-import {
-  LockOutlined,
-  MobileOutlined,
-  UserOutlined,
-} from '@ant-design/icons';
+import { LockOutlined, MobileOutlined, UserOutlined } from '@ant-design/icons';
 import {
   LoginForm,
   PageContainer,
   ProFormCaptcha,
-  ProFormCheckbox,
   ProFormText,
   setAlpha,
 } from '@ant-design/pro-components';
-import { Space, Tabs, message, theme } from 'antd';
+import { Tabs, message, theme } from 'antd';
 import type { CSSProperties } from 'react';
 import { useState } from 'react';
-import styles from './index.less'
+import styles from './index.less';
 
 type LoginType = 'phone' | 'account';
 
 let Login = () => {
   const { token } = theme.useToken();
   const [loginType, setLoginType] = useState<LoginType>('phone');
-
   const iconStyles: CSSProperties = {
     marginInlineStart: '16px',
     color: setAlpha(token.colorTextBase, 0.2),
@@ -29,10 +23,12 @@ let Login = () => {
     verticalAlign: 'middle',
     cursor: 'pointer',
   };
+  const submit = (e: any) => {
+    console.log('submit');
+  }
 
   return (
-    <PageContainer
-    >
+    <PageContainer>
       <div style={{ backgroundColor: token.colorBgContainer }}>
         <LoginForm
           logo="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
@@ -143,6 +139,7 @@ let Login = () => {
               忘记密码
             </a>
           </div>
+
         </LoginForm>
       </div>
     </PageContainer>
@@ -154,5 +151,5 @@ export default () => {
     <div className={styles.centerPos}>
       <Login></Login>
     </div>
-  )
-}
+  );
+};
