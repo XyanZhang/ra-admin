@@ -90,7 +90,12 @@ export const layout: RunTimeLayoutConfig = ({
   setInitialState,
 }) => {
   return {
-    rightContentRender: () => <RightContent />,
+    rightContentRender: () => (
+      <RightContent
+        initialState={initialState}
+        setInitialState={setInitialState}
+      />
+    ),
     disableContentMargin: false,
     // waterMarkProps: {
     //   content: initialState?.currentUser?.name,
@@ -118,18 +123,17 @@ export const layout: RunTimeLayoutConfig = ({
       return (
         <>
           {children}
-          (
           <SettingDrawer
             enableDarkTheme
             settings={initialState?.settings}
             onSettingChange={(settings) => {
+              console.log(settings);
               setInitialState((preInitialState: any) => ({
                 ...preInitialState,
                 settings,
               }));
             }}
           />
-          )
         </>
       );
     },
