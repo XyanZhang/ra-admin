@@ -11,6 +11,7 @@ import { history } from '@umijs/max';
 import { Tabs, message, theme } from 'antd';
 import { useCallback, useState } from 'react';
 import styles from './index.less';
+import { LOGIN_SIGN } from '../../constants/index';
 
 type LoginType = 'phone' | 'account';
 
@@ -28,7 +29,7 @@ let Login = () => {
   const submit = useCallback(async (e: LoginParams) => {
     console.log('submit', e);
     const { mobile, username } = e;
-    localStorage.setItem('loginToken', '1');
+    localStorage.setItem(LOGIN_SIGN, '1');
     if (mobile) localStorage.setItem('loginMobile', mobile);
     if (username) localStorage.setItem('loginUser', username);
 

@@ -1,14 +1,14 @@
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import { SettingDrawer } from '@ant-design/pro-components';
-import { Link, RunTimeLayoutConfig } from '@umijs/max';
+import { Link, RunTimeLayoutConfig, history } from '@umijs/max';
+import { Modal } from 'antd';
 import { Footer } from 'antd/es/layout/layout';
 import RightContent from './components/RightContent';
-// 运行时配置
+// import AppStyle from './app.less';
 
-// import { LogoutOutlined } from '@ant-design/icons';
-// import { Dropdown, theme, ColorPicker  } from 'antd';
 interface Settings {
   layout?: 'mix';
+  heightLayoutHeader?: number;
 }
 type InitState = {
   name?: string;
@@ -22,67 +22,12 @@ export async function getInitialState(): Promise<InitState> {
     name: 'ra-admin',
     settings: {
       layout: 'mix',
+      heightLayoutHeader: 64, // header 栏高度
     },
   };
 }
 
 // umi 会把 config.ts 中的路由帮我们自动注入到配置的 layout 中，这样我们就可以免去手写菜单的烦恼。
-// export const layout: RunTimeLayoutConfig = (initialState: any) => {
-//   console.log(initialState)
-
-//   return {
-//     logo: 'https://img.alicdn.com/tfs/TB1YHEpwUT1gK0jSZFhXXaAtVXa-28-27.svg',
-//     menu: {
-//       locale: false,
-//     },
-//     fixSiderbar: true,
-//     layout: 'mix', //
-//     splitMenus: false,
-//     // navTheme: 'realDark',
-//     contentWidth: 'Fluid',
-//     // colorPrimary: $PRIMARY,
-//     siderMenuType: 'sub',
-//     fixedHeader: true,
-//     // 通过token修改主题色
-//     // token: {
-//     //   sider: {
-//     //     colorMenuBackground: '#ffffff',
-//     //   },
-//     //   header: {
-//     //     colorBgHeader: '#001529',
-//     //     colorHeaderTitle: '#ffffff',
-//     //     heightLayoutHeader: 48,
-//     //   },
-//     //   pageContainer: {},
-//     // },
-//     logout: (initialState: any) => {
-//       console.log(initialState);
-//       Modal.confirm({
-//         title: '注销登录',
-//         content: '确定要注销登录吗？',
-//         okText: '确定',
-//         cancelText: '取消',
-//         okButtonProps: {
-//           danger: true,
-//         },
-//         onOk: () => {
-//           history.replace('/login');
-//         },
-//       });
-//     },
-//     footerRender: (initialState: any) => {
-//       return <SettingDrawer
-//         // pathname={pathname}
-//         enableDarkTheme
-//         getContainer={(e: any) => {
-//           if (typeof window === 'undefined') return e;
-//           return document.getElementById('test-pro-layout');
-//         }}
-//         disableUrlParams={false}
-//       />
-//     }
-//   };
-// };
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({
@@ -97,9 +42,6 @@ export const layout: RunTimeLayoutConfig = ({
       />
     ),
     disableContentMargin: false,
-    // waterMarkProps: {
-    //   content: initialState?.currentUser?.name,
-    // },
     footerRender: () => <Footer />,
     onPageChange: () => {},
     links: true
@@ -114,6 +56,9 @@ export const layout: RunTimeLayoutConfig = ({
           </Link>,
         ]
       : [],
+    // logout: (initialState: any) => {
+
+    // },
     menuHeaderRender: undefined,
     // 自定义 403 页面
     // unAccessible: <div>unAccessible</div>,

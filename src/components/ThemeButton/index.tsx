@@ -1,21 +1,19 @@
 import { useCallback } from 'react';
-import { ReactComponent as DarkSVG } from '../../assets/svg/dark.svg';
-import { ReactComponent as LightSVG } from '../../assets/svg/light.svg';
+
+import {
+  Switch
+} from 'antd'
+import styles from './index.less';
 
 let flexInline = {
   display: 'inline-flex',
 };
-let btnStyle = {
-  display: 'inline-flex',
-  cursor: 'pointer',
-};
-let svgStyle = {
-  width: '25px',
-  height: '25px',
-};
 
 export default function ThemeButton(props: any) {
   const { setInitialState, initialState } = props;
+  if(!initialState.settings.navTheme) {
+    return null;
+  }
   const changeTheme = useCallback(() => {
     const theme = initialState.settings.navTheme;
     setInitialState((preInitialState: any) => {
@@ -30,13 +28,11 @@ export default function ThemeButton(props: any) {
   }, [initialState]);
   return (
     <div style={flexInline}>
-      <span style={btnStyle} onClick={changeTheme}>
-        {initialState.settings.navTheme !== 'light' ? (
-          <LightSVG style={svgStyle} />
-        ) : (
-          <DarkSVG style={svgStyle} />
-        )}
-      </span>
+      <Switch
+        onClick={changeTheme}
+        checkedChildren={"🌞"}
+        unCheckedChildren={"🌙"}
+      ></Switch>
     </div>
   );
 }

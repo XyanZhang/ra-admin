@@ -1,6 +1,6 @@
 import { defineConfig } from '@umijs/max';
-import { routes } from './config/route';
-import { antd } from './config/antd'
+import { routes } from './route';
+import { antd } from './antd'
 
 export default defineConfig({
   antd,
