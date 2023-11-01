@@ -2,11 +2,11 @@
   "private": true,
   "author": "XyanZhang <1743067175@qq.com>",
   "scripts": {
-    "dev": "max dev",
     "build": "max build",
+    "dev": "max dev",
     "format": "prettier --cache --write .",
-    "prepare": "husky install",
     "postinstall": "max setup",
+    "prepare": "husky install",
     "setup": "max setup",
     "start": "npm run dev"
   },
@@ -14,7 +14,8 @@
     "@ant-design/icons": "^5.2.6",
     "@ant-design/pro-components": "^2.6.34",
     "@umijs/max": "^4.0.87",
-    "antd": "^5.10.2"
+    "antd": "^5.10.2",
+    "rc-queue-anim": "^2.0.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.33",

@@ -1,20 +1,21 @@
-import { Avatar,  Menu, Modal } from 'antd';
-import { useCallback, useState, useMemo } from 'react';
 import { LogoutOutlined } from '@ant-design/icons';
-import styles from './index.less'
-import { history } from '@umijs/max'
+import { history } from '@umijs/max';
+import { Avatar, Menu, Modal } from 'antd';
+import QueueAnim from 'rc-queue-anim';
+import { useCallback, useMemo, useState } from 'react';
 import { LOGIN_SIGN } from '../../constants/index';
+import styles from './index.less';
 
-const AccessPage = (props: any) => {
+const AccessPage = () => {
   // const { initialState, setInitialState } = props;
-  const [ menuVisible, setMenuVisible] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(false);
 
   const handleMouseEnter = useCallback(() => {
-    setMenuVisible(true)
+    setMenuVisible(true);
   }, [menuVisible]);
 
   const handleMouseLeave = useCallback(() => {
-    setMenuVisible(false)
+    setMenuVisible(false);
   }, [menuVisible]);
 
   const logout = () => {
@@ -31,7 +32,7 @@ const AccessPage = (props: any) => {
         history.replace('/login');
       },
     });
-  }
+  };
 
   const menu = useMemo(() => {
     return (
@@ -40,27 +41,30 @@ const AccessPage = (props: any) => {
           <LogoutOutlined /> 退出登录
         </Menu.Item>
       </Menu>
-    )
-  }, [menuVisible])
+    );
+  }, [menuVisible]);
 
   return (
-
-      <div
-        style={{position:'relative'}}
-        onMouseEnter={handleMouseEnter} 
-        onMouseLeave={handleMouseLeave}
-      >
-        <Avatar 
-          style={{cursor: 'pointer'}}
-          src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
-        >
-        </Avatar>
-        {
-          menuVisible 
-          ? <div className={styles.menuOuter}>{menu}</div>
-          : ''
-        }
-      </div>
+    <div
+      style={{ position: 'relative' }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <Avatar
+        style={{ cursor: 'pointer' }}
+        src="https://github.githubassets.com/images/modules/logos_page/Octocat.png"
+      ></Avatar>
+      <QueueAnim>
+        {menuVisible ? (
+          // 必须设置key
+          <div className={styles.menuOuter} key="1">
+            {menu}
+          </div>
+        ) : (
+          ''
+        )}
+      </QueueAnim>
+    </div>
   );
 };
 
