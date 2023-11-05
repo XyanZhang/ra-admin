@@ -1,7 +1,7 @@
 import { BookOutlined, LinkOutlined } from '@ant-design/icons';
 import { SettingDrawer } from '@ant-design/pro-components';
-import { Link, RunTimeLayoutConfig, history } from '@umijs/max';
-import { Modal } from 'antd';
+import { Link, RequestConfig, RunTimeLayoutConfig } from '@umijs/max';
+
 import { Footer } from 'antd/es/layout/layout';
 import RightContent from './components/RightContent';
 // import AppStyle from './app.less';
@@ -84,4 +84,37 @@ export const layout: RunTimeLayoutConfig = ({
     },
     ...initialState?.settings,
   };
+};
+
+export const request: RequestConfig = {
+  timeout: 1000,
+  // other axios options you want
+  errorConfig: {
+    errorHandler() {},
+    errorThrower() {},
+  },
+  responseInterceptors: [
+    // 直接写一个 function，作为拦截器
+    (response: any) => {
+      // 不再需要异步处理读取返回体内容，可直接在data中读出，部分字段可在 config 中找到
+      // const { data = {} as any, config } = response;
+      // do something
+      return response;
+    },
+    // 一个二元组，第一个元素是 request 拦截器，第二个元素是错误处理
+    [
+      (response: any) => {
+        return response;
+      },
+      (error: any) => {
+        return Promise.reject(error);
+      },
+    ],
+    // 数组，省略错误处理
+    [
+      (response: any) => {
+        return response;
+      },
+    ],
+  ],
 };

@@ -1,6 +1,6 @@
 import { defineConfig } from '@umijs/max';
+import { antd } from './antd';
 import { routes } from './route';
-import { antd } from './antd'
 
 export default defineConfig({
   antd,
@@ -14,4 +14,11 @@ export default defineConfig({
   },
   routes,
   npmClient: 'pnpm',
+  proxy: {
+    '/api': {
+      target: 'http://192.168.31.240:8000/',
+      changeOrigin: true,
+      // 'pathRewrite': { '^/api' : '' },
+    },
+  },
 });
