@@ -6,6 +6,7 @@ import { Empty, Spin } from 'antd';
 
 import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from '@/constants';
 import { useModel, useSearchParams } from '@umijs/max';
+import QuestionCard from './components/QuestionCard';
 import styles from './index.less';
 import { getQuestionListService } from './service';
 
@@ -87,7 +88,7 @@ const List: FC = () => {
     if (!started || loading) return <Spin />;
     if (total === 0) return <Empty description="暂无数据" />;
     if (!haveMoreData) return <span>没有更多了...</span>;
-    return <span>开始加载下一页</span>;
+    return <span>开始加载下一页~</span>;
   }, [started, loading, haveMoreData]);
 
   return (
@@ -100,8 +101,7 @@ const List: FC = () => {
         {list.length > 0 &&
           list.map((q: any) => {
             const { _id } = q;
-            // return <QuestionCard key={_id} {...q} />
-            return <>{_id}</>;
+            return <QuestionCard key={_id} {...q} />;
           })}
       </div>
       <div className={styles.footer}>
