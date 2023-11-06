@@ -12,7 +12,7 @@ const list = new Array(Math.floor(Math.random() * 100))
   });
 
 export default {
-  'GET /api/question': (req: any, res: any) => {
+  'GET /api/question2': (req: any, res: any) => {
     res.json({
       success: true,
       data: { list: list },

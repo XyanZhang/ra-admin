@@ -14,11 +14,11 @@ export default defineConfig({
   },
   routes,
   npmClient: 'pnpm',
-  // proxy: {
-  //   '/api': {
-  //     target: 'http://192.168.31.240:8000/',
-  //     changeOrigin: true,
-  //     // 'pathRewrite': { '^/api' : '' },
-  //   },
-  // },
+  proxy: {
+    '/api': {
+      target: 'http://192.168.31.240:8000/',
+      changeOrigin: true,
+      // 'pathRewrite': { '^/api' : '' },
+    },
+  },
 });

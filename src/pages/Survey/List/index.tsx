@@ -6,6 +6,7 @@ import { Empty, Spin } from 'antd';
 
 import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from '@/constants';
 import { useModel, useSearchParams } from '@umijs/max';
+import ListSearch from './components/ListSearch';
 import QuestionCard from './components/QuestionCard';
 import styles from './index.less';
 import { getQuestionListService } from './service';
@@ -94,7 +95,9 @@ const List: FC = () => {
   return (
     <>
       <div className={styles.header}>
-        <div className={styles.right}>{/* <ListSearch /> */}</div>
+        <div className={styles.right}>
+          <ListSearch />
+        </div>
       </div>
       <div className={styles.content}>
         {/* 问卷列表 */}
