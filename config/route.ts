@@ -38,6 +38,12 @@ export let routes = [
   {
     name: ' 问卷管理',
     path: '/survey',
-    component: './Survey/List',
+    component: './Survey/Question',
+  },
+  {
+    name: ' 问卷编辑',
+    path: '/question/edit/:id',
+    component: './Survey/Question',
+    layout: false,
   },
 ];
