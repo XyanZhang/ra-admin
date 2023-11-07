@@ -5,7 +5,7 @@ import { useDebounceFn, useRequest } from 'ahooks';
 import { Empty, Spin } from 'antd';
 
 import { LIST_PAGE_SIZE, LIST_SEARCH_PARAM_KEY } from '@/constants';
-import { useModel, useSearchParams } from '@umijs/max';
+import { useSearchParams } from '@umijs/max';
 import ListSearch from './components/ListSearch';
 import QuestionCard from './components/QuestionCard';
 import styles from './index.less';
@@ -115,8 +115,6 @@ const List: FC = () => {
 };
 
 const SurveyPage: React.FC = () => {
-  const { name } = useModel('global');
-  console.log(name);
   return (
     <PageContainer ghost>
       <List></List>

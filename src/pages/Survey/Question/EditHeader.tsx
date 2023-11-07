@@ -1,5 +1,5 @@
 import { EditOutlined, LeftOutlined } from '@ant-design/icons';
-import { useNavigate } from '@umijs/max';
+import { useModel, useNavigate } from '@umijs/max';
 import { Button, Input, Space, Typography } from 'antd';
 import { ChangeEvent, FC, useState } from 'react';
 import styles from './EditHeader.less';
@@ -8,14 +8,16 @@ const { Title } = Typography;
 
 // 显示和修改标题
 const TitleElem: FC = () => {
-  const { title } = { title: 'xxx' };
   // const dispatch = useDispatch()
+  const { title, setTitle } = useModel('survey');
+  console.log(title);
 
   const [editState, SetEditState] = useState(false);
 
   function handleChange(event: ChangeEvent<HTMLInputElement>) {
     const newTitle = event.target.value.trim();
     if (!newTitle) return;
+    setTitle(newTitle);
   }
 
   if (editState) {

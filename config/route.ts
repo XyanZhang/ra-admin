@@ -38,7 +38,7 @@ export let routes = [
   {
     name: ' 问卷管理',
     path: '/survey',
-    component: './Survey/Question',
+    component: './Survey/List',
   },
   {
     name: ' 问卷编辑',
