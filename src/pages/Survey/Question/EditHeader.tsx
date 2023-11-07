@@ -3,14 +3,13 @@ import { useModel, useNavigate } from '@umijs/max';
 import { Button, Input, Space, Typography } from 'antd';
 import { ChangeEvent, FC, useState } from 'react';
 import styles from './EditHeader.less';
+import EditToolbar from './EditToolbar';
 
 const { Title } = Typography;
 
 // 显示和修改标题
 const TitleElem: FC = () => {
-  // const dispatch = useDispatch()
   const { title, setTitle } = useModel('survey');
-  console.log(title);
 
   const [editState, SetEditState] = useState(false);
 
@@ -58,15 +57,15 @@ const EditHeader: FC = () => {
             <TitleElem />
           </Space>
         </div>
-        {/* <div className={styles.main}>
+        <div className={styles.main}>
           <EditToolbar />
         </div>
         <div className={styles.right}>
-          <Space>
+          {/* <Space>
             <SaveButton />
             <PublishButton />
-          </Space>
-        </div> */}
+          </Space> */}
+        </div>
       </div>
     </div>
   );
